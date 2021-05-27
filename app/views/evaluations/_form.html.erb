@@ -1,0 +1,49 @@
+<%= form_with(model: evaluation, local: true) do |form| %>
+  <% if evaluation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(evaluation.errors.count, "error") %> prohibited this evaluation from being saved:</h2>
+
+      <ul>
+        <% evaluation.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :evaluator %>
+    <%= form.text_field :evaluator, class: "form-control", :value=>current_student.name, :disabled => true %>
+    <%= form.hidden_field :evaluator, class: "form-control", :value=>current_student.name %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :evaluatee %>
+    <%# byebug %>
+    <%= form.select :evaluatee, options_for_select(Group.find_by(id: current_student.group_id).students.map{|s| s.name if s.name != current_student.name}.compact, "Choose"), {}, class: "form-control select-form-color" %>
+
+  </div>
+
+  <div class="form-group">
+    <%= form.label :project %>
+    <%= form.select :project, options_for_select([['Project 2: The Game of Set', 2], ['Project 3: Web Scraping', 3], ['Project 4: Faculty Page Redesign', 4], ['Project 5: The Game of Set, Reloaded', 5], ['Project 6: Final Project', 6]], "Choose"), {}, {class: "form-control select-form-color"} %>
+
+    <%# form.number_field :project, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :score %>
+    <%= form.select :score, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5], ['6', 6], ['7',7], ['8',8], ['9',9], ['10',10]], "Choose"), {}, class: "form-control select-form-color" %>
+
+    <%# form.number_field :score, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :comments %>
+    <%= form.text_field :comments, class: "form-control", :required => true %>
+  </div>
+
+  <%= form.submit "Submit", class: "btn btn-danger btn-lg" %>
+  <br>
+  <br>
+<% end %>

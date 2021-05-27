@@ -1,0 +1,29 @@
+<% provide(:title, "View Evaluation") %>
+
+<p>
+  <strong>Evaluator:</strong>
+  <%= @evaluation.evaluator %>
+</p>
+
+<p>
+  <strong>Evaluatee:</strong>
+  <%= @evaluation.evaluatee %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @evaluation.project %>
+</p>
+
+<p>
+  <strong>Score:</strong>
+  <%= @evaluation.score %>
+</p>
+
+<p>
+  <strong>Comments:</strong>
+  <%= @evaluation.comments %>
+</p>
+
+<%= link_to 'Edit', edit_evaluation_path(@evaluation) %> |
+<%= link_to 'Back', evaluations_path %>

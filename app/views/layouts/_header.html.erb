@@ -1,0 +1,50 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <%= link_to "Home", '/', id:"logo" %>
+        <%# debugger %>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <% if !admin_logged_in? && !student_logged_in? %>
+              <li><%= link_to "Admin Log In", '/admin' %></li>
+            <% end %>
+
+            <% if admin_logged_in? && !student_logged_in? %>
+              <li><%= link_to "Admin Upload", '/admin/upload' %></li>
+            <% end %>
+
+            <% if admin_logged_in? && !student_logged_in? %>
+              <li><%= link_to "Student List", '/students' %></li>
+            <% end %>
+
+            <% if admin_logged_in? && !student_logged_in? %>
+              <li><%= link_to "Group List", '/groups' %></li>
+            <% end %>
+
+            <% if admin_logged_in? && !student_logged_in? %>
+              <li><%= link_to "Evaluation List", '/evaluations' %></li>
+            <% end %>
+            
+            <% if student_logged_in? && !admin_logged_in? %>
+              <li><%= link_to "New Evaluation", '/new_evaluation' %></li>
+            <% end %>
+
+            <% if student_logged_in? && !admin_logged_in? %>
+              <li><%= link_to "My Group", '/groups/'+current_student.group_id.to_s %></li>
+            <% end %>
+
+            <% if student_logged_in? && !admin_logged_in? %>
+              <li><%= link_to "My Evaluations", '/evaluations' %></li>
+            <% end %>
+
+            <% if !student_logged_in? && !admin_logged_in? %>
+              <li><%= link_to "Student Log In", '/login' %></li>
+            <% end %>
+
+            <% if student_logged_in? || admin_logged_in? %>
+              <li><%= link_to "Log Out", '/logout' %></li>
+            <% end %>
+
+          </ul>
+        </nav>
+      </div>
+    </header>

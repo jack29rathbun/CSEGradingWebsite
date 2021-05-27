@@ -1,0 +1,7 @@
+<% provide(:title, "New Upload") %>
+
+<h1>New Upload</h1>
+<p>Upload a formatted excel file containing your class. Need a sample file? <%= link_to 'Click here.', admins_download_sample_url %></p>
+<%= render 'form', upload: @upload %>
+
+<%= link_to 'Back', uploads_path %>
